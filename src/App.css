@@ -1,0 +1,242 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+.profile-container {
+	display: grid;
+	height: 70vh;
+	width: 90vw;
+	gap: 20px;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+.profile {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	box-shadow: 3px 3px 20px gray;
+	padding: 10px;
+	border-radius: 20px;
+	width: 70%;
+	height: 300px;
+}
+.profile .view-repo-btn {
+	height: 40px;
+	width: 80%;
+	cursor: pointer;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 10px;
+}
+.profile .view-repo-btn:hover {
+	background-color: #0056b3;
+}
+.avatar-image {
+	height: 150px;
+	width: 150px;
+	border-radius: 50%;
+}
+
+.input-user-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	width: 80%;
+}
+.input-user-container input {
+	height: 40px;
+	width: 30%;
+	border-radius: 10px;
+	outline: none;
+	padding: 10px;
+}
+
+.input-user-container .view-bookmark-btn {
+	width: 12%;
+	height: 40px;
+	border-radius: 10px;
+	box-shadow: 3px 3px 10 gray;
+	cursor: pointer;
+	background-color: rgb(241, 110, 63);
+	color: white;
+	border: none;
+}
+.input-user-container .view-bookmark-btn:hover {
+	background-color: rgb(211, 72, 22);
+}
+.profile-container {
+	margin-top: 40px;
+}
+
+.main-container {
+	min-height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+}
+
+.bookmark-container {
+	margin: 10px auto;
+	height: 90vh;
+	width: 90vw;
+	box-shadow: 3px 3px 10px rgb(151, 150, 150);
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	gap: 20px;
+	padding: 10px;
+}
+
+.bookmark-container h2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.bookmark-container ol {
+	padding: 20px;
+}
+.bookmark-container .home-page-btn {
+	height: 5%;
+	width: 10%;
+	cursor: pointer;
+	border-radius: 10px;
+}
+
+.repo-container {
+	min-height: 100vh;
+	width: 100vw;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 20px;
+	padding: 20px;
+}
+
+.repo-inner-container {
+	height: 90%;
+	width: 90%;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 20px;
+}
+
+.repo-card {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	align-items: center;
+
+	border-radius: 10px;
+	gap: 20px;
+	min-height: 300px;
+	box-shadow: 3px 3px 20px rgb(112, 109, 109);
+}
+.repo-card .viewrepo-bookmark-container {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	width: 80%;
+}
+
+.repo-card .viewrepo-bookmark-container button {
+	width: 50%;
+	height: 30px;
+	background-color: rgb(21, 190, 21);
+	color: white;
+	cursor: pointer;
+	border: none;
+	border-radius: 5px;
+}
+
+.pagination-btns {
+	display: flex;
+	gap: 20px;
+}
+
+.pagination-btns button {
+	height: 40px;
+	width: 100px;
+	cursor: pointer;
+	border-radius: 10px;
+}
+
+.home-btn {
+	height: 50px;
+	width: 100px;
+	cursor: pointer;
+	border-radius: 10px;
+}
+@media (max-width: 600px) {
+	.profile-container {
+		grid-template-columns: 1fr;
+		width: 100%;
+	}
+
+	.profile {
+		width: 100%;
+		height: auto;
+	}
+
+	.input-user-container {
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.input-user-container input {
+		width: 90%;
+	}
+
+	.input-user-container .view-bookmark-btn {
+		width: 90%;
+	}
+
+	.repo-inner-container {
+		grid-template-columns: 1fr;
+	}
+
+	.bookmark-container .home-page-btn {
+		width: 50%;
+		height: 40px;
+	}
+
+	.pagination-btns {
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+	.profile-container {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.profile {
+		width: 100%;
+	}
+
+	.input-user-container input {
+		width: 60%;
+	}
+
+	.input-user-container .view-bookmark-btn {
+		width: 30%;
+	}
+
+	.repo-inner-container {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.bookmark-container .home-page-btn {
+		width: 25%;
+	}
+}

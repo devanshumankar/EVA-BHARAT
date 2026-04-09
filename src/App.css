@@ -195,7 +195,16 @@
 	transition: all 0.3s ease;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-
+.bookmark-item {
+	line-height: 2;
+}
+.bookmark-item button {
+	margin-left: 10px;
+	height: 30px;
+	border-radius: 5px;
+	padding: 5px;
+	cursor: pointer;
+}
 .theme-toggle:hover {
 	transform: scale(1.1);
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);

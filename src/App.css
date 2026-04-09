@@ -84,7 +84,7 @@
 
 .bookmark-container {
 	margin: 10px auto;
-	height: 90vh;
+	height: 100vh;
 	width: 90vw;
 	box-shadow: 3px 3px 10px rgb(151, 150, 150);
 	display: flex;
@@ -176,6 +176,35 @@
 	cursor: pointer;
 	border-radius: 10px;
 }
+.theme-toggle {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	z-index: 1000;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 2px solid #2e303a;
+	background: #16171d;
+	color: #9ca3af;
+	font-size: 24px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:hover {
+	transform: scale(1.1);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.theme-toggle:active {
+	transform: scale(0.95);
+}
+
 @media (max-width: 600px) {
 	.profile-container {
 		grid-template-columns: 1fr;

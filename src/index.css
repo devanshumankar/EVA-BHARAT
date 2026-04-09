@@ -48,6 +48,45 @@
 	}
 }
 
+.dark-theme body {
+	background-color: #16171d;
+	color: #9ca3af;
+}
+
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3 {
+	color: #f3f4f6;
+}
+
+.dark-theme .repo-card,
+.dark-theme .profile,
+.dark-theme .bookmark-container {
+	background-color: #1f2028;
+	border: 1px solid #2e303a;
+	box-shadow:
+		rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
+		rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+}
+
+.dark-theme button {
+	background-color: #c084fc;
+	color: #000;
+}
+
+.dark-theme a {
+	color: #c084fc;
+}
+
+.dark-theme input {
+	background-color: #1f2028;
+	color: #9ca3af;
+	border: 1px solid #2e303a;
+}
+.dark-theme #social .button-icon {
+	filter: invert(1) brightness(2);
+}
+
 body {
 	margin: 0;
 }

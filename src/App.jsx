@@ -4,6 +4,8 @@ import GitHubProfile from "./components/GitHubProfile";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Repositories from "./components/Repositories";
 import BookMark from "./components/BookMark";
+import ThemeToggle from "./components/ThemeToggle";
+
 const App = () => {
 	const router = createBrowserRouter([
 		{
@@ -19,7 +21,12 @@ const App = () => {
 			element: <BookMark></BookMark>,
 		},
 	]);
-	return <RouterProvider router={router}></RouterProvider>;
+	return (
+		<>
+			<ThemeToggle />
+			<RouterProvider router={router}></RouterProvider>
+		</>
+	);
 };
 
 export default App;

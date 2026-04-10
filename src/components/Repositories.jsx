@@ -6,21 +6,24 @@ import Repository from "./Repository";
 
 const Repositories = () => {
 	const { userName } = useParams();
+	const [allRepos, setAllRepos] = useState([]);
 	const [repos, setRepos] = useState([]);
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(false);
 	const [page, setPage] = useState(1);
+	const [sortBy, setSortBy] = useState("default");
+	const [filterByLanguage, setFilterByLanguage] = useState("all");
 	const per_page = 6;
 	const URL = "https://api.github.com/users/";
 	const navigate = useNavigate();
+
 	useEffect(() => {
 		async function fetchRepos() {
 			try {
 				setLoading(true);
-				const res = await axios.get(
-					URL + `${userName}/repos` + `?per_page=${per_page}&page=${page}`,
-				);
-				setRepos(res.data);
+				const res = await axios.get(URL + `${userName}/repos?per_page=100`);
+				setAllRepos(res.data);
+				setPage(1);
 			} catch (err) {
 				setError("failed to fetch user repos");
 			} finally {
@@ -28,7 +31,29 @@ const Repositories = () => {
 			}
 		}
 		fetchRepos();
-	}, [page]);
+	}, [userName]);
+
+	useEffect(() => {
+		let filtered = [...allRepos];
+		if (filterByLanguage !== "all") {
+			filtered = filtered.filter((repo) => repo.language === filterByLanguage);
+		}
+		if (sortBy === "stars") {
+			filtered.sort((a, b) => b.stargazers_count - a.stargazers_count);
+		} else if (sortBy === "forks") {
+			filtered.sort((a, b) => b.forks_count - a.forks_count);
+		}
+
+		const startIdx = (page - 1) * per_page;
+		const paginatedRepos = filtered.slice(startIdx, startIdx + per_page);
+
+		setRepos(paginatedRepos);
+	}, [allRepos, sortBy, filterByLanguage, page]);
+
+	const languages = [
+		"all",
+		...new Set(allRepos.map((repo) => repo.language).filter(Boolean)),
+	];
 	if (error) return <p>{error}</p>;
 	if (loading) return <Loader></Loader>;
 	function handleBookmark(url, name) {
@@ -48,14 +73,56 @@ const Repositories = () => {
 			<button className="home-btn" onClick={() => navigate("/")}>
 				Back to Home
 			</button>
-			{repos.length == 0 && <p>User Does not Have Any Repository</p>}
+			<div className="sort-filter-controls">
+				<div className="control-group">
+					<label htmlFor="sort">Sort by:</label>
+					<select
+						id="sort"
+						value={sortBy}
+						onChange={(e) => {
+							setSortBy(e.target.value);
+							setPage(1);
+						}}
+					>
+						<option value="default">Default</option>
+						<option value="stars"> Stars</option>
+						<option value="forks"> Forks</option>
+					</select>
+				</div>
+
+				<div className="control-group">
+					<label htmlFor="language">Filter by Language:</label>
+					<select
+						id="language"
+						value={filterByLanguage}
+						onChange={(e) => {
+							setFilterByLanguage(e.target.value);
+							setPage(1);
+						}}
+					>
+						{languages.map((lang) => (
+							<option key={lang} value={lang}>
+								{lang === "all" ? "All Languages" : lang}
+							</option>
+						))}
+					</select>
+				</div>
+			</div>
+
+			{repos.length === 0 && (
+				<p>
+					{allRepos.length === 0 ?
+						"User does not have any repository"
+					:	"No repositories match the current filters"}
+				</p>
+			)}
 			<div className="repo-inner-container">
 				{repos.map((repo) => (
 					<Repository key={repo.id} repo={repo} onBookmark={handleBookmark} />
 				))}
 			</div>
 			<div className="pagination-btns">
-				<button disabled={page == 1} onClick={() => setPage((prev) => prev - 1)}>
+				<button disabled={page === 1} onClick={() => setPage((prev) => prev - 1)}>
 					Prev
 				</button>
 				<button
